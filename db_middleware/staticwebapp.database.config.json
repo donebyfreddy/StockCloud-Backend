@@ -1,0 +1,46 @@
+{
+  "$schema": "https://dataapibuilder.azureedge.net/schemas/v0.5.0-beta/dab.draft.schema.json",
+  "data-source": {
+    "database-type": "mssql",
+    "options": {
+      "set-session-context": false
+    },
+    "connection-string": "Server=tcp:inventorycloud.database.windows.net,1433;Initial Catalog=StockDB;Persist Security Info=False;User ID=Federico;Password=Fcbarcelona2022;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+
+  },
+  "runtime": {
+    "rest": {
+      "path": "/api/v1"
+    },
+    "graphql": {
+      "path": "/graphql"
+    },
+    "host": {
+      "mode": "production",
+      "cors": {
+        "origins": [],
+        "allow-credentials": true
+      },
+      "authentication": {
+        "provider": "StaticWebApps"
+      }
+    }
+  },
+  "entities": {
+    "User": {
+      "source": "dbo.Users",
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        },
+        {
+          "actions": ["create", "update", "delete"],
+          "role": "authenticated"
+        }
+      ]
+    }
+  }
+}
+
+
