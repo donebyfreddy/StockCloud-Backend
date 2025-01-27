@@ -159,6 +159,8 @@ export const register = async (req, res, next) => {
     const userContactNumber = contactNumber || "0000000000"; // Set a default contact number
     const userStatus = status || "active"; // Default status to 'active'
 
+    console.log("User:", user)
+
     // Check if the user already exists
     let user = await UserModel.findOne({
       where: { email }, // Using `where` to match the email in Sequelize
