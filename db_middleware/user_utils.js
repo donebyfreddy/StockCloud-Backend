@@ -12,7 +12,7 @@ export const sendcookie = (user, res, message, statuscode = 200) => {
       httpOnly: true,
       maxAge: 30 * 60 * 10000,
       sameSite: process.env.NODE_ENV === "development" ? "lax" : "none",
-      secure: process.env.NODE_ENV === "development" ? false : true,
+      secure: process.env.NODE_ENV === "production", // true in production
     })
     .json({
       success: true,
